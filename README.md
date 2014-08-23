@@ -102,6 +102,36 @@ Sometimes you need FastClick to ignore certain elements. You can do this easily 
 <a class="needsclick">Ignored by FastClick</a>
 ```
 
+### Active and touched states
+
+In order to provide visible feedback to any user navigating through your web application, this extended fastclick library sets two different CSS classes, depending on the current action.
+
+1. While the user is tapping a clickable element (and holding the touch) the element gets the CSS class `fastclick-touched` which can be styled accordingly to provide visible feedback (this corresponds to the old :hover CSS pseudoclass on desktops)
+2. As soon as the user stops tapping and a click event is fired, the additional class `fastclick-active` is set (this corresponds to the old :active CSS pseudeoclass on desktops)
+3. As soon as the touch is canceled or the user drags a touch further than the threshold allowed by fastclick, both classes are removed again
+
+#### Example styles (to be adjusted)
+
+```css
+.clickable {
+	color: black;
+	background-color: white;
+	border: 1px dotted black;
+	width: 150px;
+	height: 150px;
+}
+
+.clickable.fastclick-active {
+	background-color: green;
+	color: red;
+}
+
+.clickable.fastclick-touched {
+	background-color: red;
+	color: green;
+}
+```
+
 #### Use case 1: non-synthetic click required ####
 
 Internally, FastClick uses `document.createEvent` to fire a synthetic `click` event as soon as `touchend` is fired by the browser. It then suppresses the additional `click` event created by the browser after that. In some cases, the non-synthetic `click` event created by the browser is required, as described in the [triggering focus example](http://ftlabs.github.com/fastclick/examples/focus.html).
