@@ -110,6 +110,15 @@ In order to provide visible feedback to any user navigating through your web app
 2. As soon as the user stops tapping and a click event is fired, the additional class `fastclick-active` is set (this corresponds to the old :active CSS pseudeoclass on desktops)
 3. As soon as the touch is canceled or the user drags a touch further than the threshold allowed by fastclick, both classes are removed again
 
+__!! Important !!__
+
+The CSS-classes named above are set on the layer level. This behaviour could be changed back to an on-element basis, but since
+this modified lib is mainly used in the angular-fastlick library (https://github.com/benediktreiser/angular-fastclick), where the respective layer always is the element which has a 
+click-handler attached, this works fine. By putting the active states back on the real element, we get weird optical feedback, as
+tapping a child element, will only highlight this child instead of the actual clickable parent element (which will handle the click
+	event in the end).
+
+
 #### Example styles (to be adjusted)
 
 ```css
