@@ -8,5 +8,8 @@
     "Makefile",
     "tests",
     "examples"
-  ]
+  ],
+  "dependencies": {
+    "classlist": "~2014.7.23"
+  }
 }
