@@ -11,8 +11,12 @@
   color: black;
   background-color: white;
   border: 1px dotted black;
-  width: 150px;
-  height: 150px;
+  width: 300px;
+  height: 300px;
+}
+#text {
+  height: 50%;
+  border-bottom: 1px solid gray;
 }
 #clickable.fastclick-touched {
   background-color: red;
@@ -22,19 +26,33 @@
   background-color: green;
   color: red;
 }
+#nested {
+  height: 50%;
+}
+#nested.fastclick-touched {
+  background-color: blue;
+}
+#nested.fastclick-active {
+  background-color: brown;
+  color: yellow;
+}
 </style>
 
 <script src="../lib/fastclick.js"></script>
 <script>
   window.addEventListener('load', function() {
-    new FastClick(document.body, {stateLayer: document.getElementById('clickable')});
-  }, false);
+    new FastClick(document.getElementById('clickable'), {stateLayer: document.getElementById('clickable')}, false);
+    new FastClick(document.getElementById('nested'), {stateLayer: document.getElementById('nested')}, false);
+  });
 </script>
 </head>
 <body>
 <div id="everything">
   <div id="content">
-    <div id="clickable">This box's background- and text-color should change on tapping / releasing</div>
+    <div id="clickable">
+      <div id="text">This box's background- and text-color should change on tapping / releasing</div>
+      <div id="nested">This nested box's background- and text-color should change on tapping / releasing</div>
+    </div>
   </div>
 </body>
 </html>
